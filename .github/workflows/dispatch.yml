@@ -1,0 +1,20 @@
+name: Repository Dispatch Workflow
+
+on:
+  repository_dispatch:
+    types: [sync-github-templates]
+
+jobs:
+  run-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Print event details
+        run: |
+          echo "Event received: ${{ github.event.action }}"
+
+      - name: Run your custom script
+        run: |
+          echo "Running custom script based on repository dispatch event"
